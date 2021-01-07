@@ -1,11 +1,20 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
+import frontPage from '../views/frontPage.vue'
+import publicPart from '../views/publicPart'
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'publicPart',
+    component: publicPart,
+    children: [
+      {
+        path: 'home',
+        component: frontPage,
+        name: 'home',
+        meta: { title: 'Главная', icon: 'dashboard' }
+      }
+    ]
   },
   {
     path: '/about',

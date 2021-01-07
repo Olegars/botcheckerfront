@@ -1,11 +1,53 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
   <router-view/>
 </template>
+<script>
 
+import { mapActions, mapGetters } from 'vuex'
+export default {
+  name: 'App',
+  components: {
+  },
+  data () {
+    return {
+      log: false
+    }
+  },
+  computed: {
+    ...mapGetters({
+      GetSiteData: 'GetSiteData',
+      GetLoginRedirect: 'GetLoginRedirect',
+      GetUserAt: 'GetUserAt'
+    })
+  },
+  created () {
+    // this.createLocalForageInstance()
+    this.saveScreenSize()
+    // this.socketIo()
+  },
+  // watch: {
+  //   GetUserAt: function () {
+  //     if (this.GetUserAt) {
+  //       this.$router.addRoutes(asyncRoutes)
+  //       this.$router.addRoutes(adminRoute)
+  //       if (Object.keys(this.GetLoginRedirect).length > 0) {
+  //         this.$router.push(this.GetLoginRedirect)
+  //         this.loginRedirect({})
+  //       }
+  //     }
+  //   }
+  // },
+  methods: {
+    ...mapActions({
+      createLocalForageInstance: 'createLocalForageInstance',
+      loadSiteData: 'loadSiteData',
+      saveScreenSize: 'saveScreenSize',
+      loginRedirect: 'loginRedirect',
+      socketIo: 'socketIo'
+    })
+  }
+}
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
